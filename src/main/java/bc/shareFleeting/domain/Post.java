@@ -1,4 +1,4 @@
-package bc.shareFleeting.entity;
+package bc.shareFleeting.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

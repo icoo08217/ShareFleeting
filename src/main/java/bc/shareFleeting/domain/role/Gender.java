@@ -1,4 +1,4 @@
-package bc.shareFleeting.entity.role;
+package bc.shareFleeting.domain.role;
 
 public enum Gender {
     FEMALE , MALE
