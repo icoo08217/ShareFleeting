@@ -2,11 +2,13 @@ package bc.shareFleeting.web.controller;
 
 import bc.shareFleeting.domain.Post;
 import bc.shareFleeting.service.PostService;
+import bc.shareFleeting.web.dto.PostNewForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -15,6 +17,25 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+
+    /*
+        게시물 등록 폼
+     */
+    @GetMapping("/post/new")
+    public String createNewPost(){
+        return "post/newForm";
+    }
+
+    /*
+        게시물 등록 정보 Post
+     */
+    @PostMapping("/post/new")
+    public PostNewForm newPost(PostNewForm form) {
+        Post newPost = postService.savePost(form);
+
+        // 미완성
+        return null;
+    }
 
     /*
         게시물 상세 페이지

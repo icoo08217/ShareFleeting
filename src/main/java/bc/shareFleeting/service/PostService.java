@@ -2,6 +2,7 @@ package bc.shareFleeting.service;
 
 import bc.shareFleeting.domain.Post;
 import bc.shareFleeting.repository.PostRepository;
+import bc.shareFleeting.web.dto.PostNewForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,11 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public Post savePost(PostNewForm form) {
+
+        // builder 패턴 공부 + builder 채우기
+        Post newPost = Post.builder().build();
+
+        return postRepository.save(newPost);
+    }
 }
