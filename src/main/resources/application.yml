@@ -4,4 +4,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/sf
     username: bc
     password:
+    hikari:
+      schema: share
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true

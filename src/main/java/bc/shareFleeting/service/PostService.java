@@ -26,8 +26,14 @@ public class PostService {
 
     public Post savePost(PostNewForm form) {
 
-        // builder 패턴 공부 + builder 채우기
-        Post newPost = Post.builder().build();
+        // builder 패턴
+        Post newPost = Post.builder()
+//                        .id(1L)
+                        .title(form.getTitle())
+                        .content(form.getContent())
+                        .createdDate(form.getCreatedDate())
+                        .modifiedDate(form.getCreatedDate())
+                        .build();
 
         return postRepository.save(newPost);
     }
