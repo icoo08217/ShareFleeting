@@ -28,7 +28,6 @@ public class PostService {
 
         // builder 패턴
         Post newPost = Post.builder()
-//                        .id(1L)
                         .title(form.getTitle())
                         .content(form.getContent())
                         .createdDate(form.getCreatedDate())
@@ -36,5 +35,14 @@ public class PostService {
                         .build();
 
         return postRepository.save(newPost);
+    }
+
+    public Post updatePost(Long id, PostNewForm form) {
+        Optional<Post> post = postRepository.findById(id);
+        if(post.isPresent()) {
+            return post.get();
+        } else {
+            return null;
+        }
     }
 }

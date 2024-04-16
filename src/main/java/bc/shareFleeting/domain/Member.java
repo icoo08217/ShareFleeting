@@ -1,10 +1,10 @@
 package bc.shareFleeting.domain;
 
 import bc.shareFleeting.domain.role.Gender;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -23,6 +23,8 @@ public class Member {
     // 성별
     private Gender gender;
 
-    //
+    // 게시물
+    @OneToMany
+    private List<Post> posts = new ArrayList<>();
 
 }
