@@ -1,5 +1,6 @@
 package bc.shareFleeting.domain;
 
+import bc.shareFleeting.domain.role.OpenStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -27,8 +28,10 @@ public class Post {
 
     private LocalDateTime modifiedDate;
 
-    @ManyToOne
-    private Member member;
+    private OpenStatus status;
+
+//    @ManyToOne
+//    private Member member;
 
     public void updatePost(String title, String content, LocalDateTime modifiedDate) {
         this.title = title;

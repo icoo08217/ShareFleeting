@@ -1,5 +1,6 @@
 package bc.shareFleeting.web.dto;
 
+import bc.shareFleeting.domain.role.OpenStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +20,9 @@ public class PostNewForm {
 
     // 생성일자
     private LocalDateTime createdDate;
+
+    // 변경일자(생성일자와 동일)
+    private LocalDateTime updatedDate;
+
+    private OpenStatus status;
 }

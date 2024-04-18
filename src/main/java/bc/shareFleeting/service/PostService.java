@@ -15,9 +15,13 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    // 게시물 1건 조회하기
     public Post findById(Long id){
-        Optional<Post> post = postRepository.findById(id);
-        return post.get();
+        try {
+            return postRepository.findById(id).get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Post> findAll() {
@@ -31,7 +35,8 @@ public class PostService {
                         .title(form.getTitle())
                         .content(form.getContent())
                         .createdDate(form.getCreatedDate())
-                        .modifiedDate(form.getCreatedDate())
+                        .modifiedDate(form.getUpdatedDate())
+                        .status(form.getStatus())
                         .build();
 
         return postRepository.save(newPost);
