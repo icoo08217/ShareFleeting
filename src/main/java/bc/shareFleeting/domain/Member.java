@@ -15,12 +15,15 @@ public class Member {
     private Long id;
 
     // 이름
+    @Column(nullable = false)
     private String memberName;
 
     // 이메일
+    @Column(nullable = false)
     private String email;
 
     // 성별
+    @Column(nullable = false)
     private Gender gender;
 
     // 게시물

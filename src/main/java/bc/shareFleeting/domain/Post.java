@@ -1,10 +1,7 @@
 package bc.shareFleeting.domain;
 
 import bc.shareFleeting.domain.role.OpenStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +17,19 @@ public class Post {
     @Id @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String content;
 
+    @Column(nullable = false)
     private LocalDateTime createdDate;
 
+    @Column(nullable = false)
     private LocalDateTime modifiedDate;
 
+    @Column(nullable = false)
     private OpenStatus status;
 
 //    @ManyToOne
