@@ -26,6 +26,14 @@ public class Member {
     @Column(nullable = false)
     private Gender gender;
 
+    // 로그인 아이디
+    @Column(nullable = false)
+    private String loginId;
+
+    // 패쓰워드
+    @Column(nullable = false)
+    private String password;
+
     // 게시물
     @OneToMany
     private List<Post> posts = new ArrayList<>();
