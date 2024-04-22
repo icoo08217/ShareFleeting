@@ -4,15 +4,16 @@ import bc.shareFleeting.domain.Post;
 import bc.shareFleeting.service.PostService;
 import bc.shareFleeting.web.dto.PostNewForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class PostController {
 
@@ -30,11 +31,8 @@ public class PostController {
         게시물 등록 정보 Post
      */
     @PostMapping("/post/new")
-    public PostNewForm newPost(PostNewForm form) {
-        Post newPost = postService.savePost(form);
-
-        // 미완성
-        return null;
+    public Post newPost(PostNewForm form) {
+        return postService.savePost(form);
     }
 
     /*

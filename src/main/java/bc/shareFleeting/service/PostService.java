@@ -1,53 +1,22 @@
 package bc.shareFleeting.service;
 
 import bc.shareFleeting.domain.Post;
-import bc.shareFleeting.repository.PostRepository;
 import bc.shareFleeting.web.dto.PostNewForm;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
-public class PostService {
+public interface PostService {
 
-    private final PostRepository postRepository;
-
-    // 게시물 1건 조회하기
-    public Post findById(Long id){
-        try {
-            return postRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<Post> findAll() {
-        return postRepository.findAll();
-    }
-
-    public Post savePost(PostNewForm form) {
-
-        // builder 패턴
-        Post newPost = Post.builder()
-                        .title(form.getTitle())
-                        .content(form.getContent())
-                        .createdDate(form.getCreatedDate())
-                        .modifiedDate(form.getUpdatedDate())
-                        .status(form.getStatus())
-                        .build();
-
-        return postRepository.save(newPost);
-    }
-
-    public Post updatePost(Long id, PostNewForm form) {
-        Optional<Post> post = postRepository.findById(id);
-        if(post.isPresent()) {
-            return post.get();
-        } else {
-            return null;
-        }
-    }
+    // 게시글 조회
+    public Post findById(Long id);
+    // 게시글 전체 조회
+    public List<Post> findAll();
+    // 게시글 생성
+    public Post savePost(PostNewForm form);
+    // 게시글 수정
+    public Post updatePost(Long id, PostNewForm form);
+    // 게시글 삭제
+    public void deletePost(Long id);
 }
