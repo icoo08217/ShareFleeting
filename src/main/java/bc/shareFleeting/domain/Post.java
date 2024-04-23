@@ -42,7 +42,7 @@ public class Post {
     public void updatePost(String title, String content, LocalDateTime modifiedDate , OpenStatus status) {
         this.title = title;
         this.content = content;
-        this.status = status;
         this.modifiedDate = modifiedDate;
+        this.status = status;
     }
 }
