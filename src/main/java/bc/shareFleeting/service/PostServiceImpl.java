@@ -5,9 +5,11 @@ import bc.shareFleeting.repository.PostRepository;
 import bc.shareFleeting.web.dto.PostNewForm;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
 
