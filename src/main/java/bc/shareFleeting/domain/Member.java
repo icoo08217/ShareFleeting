@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder @Getter
@@ -33,19 +35,25 @@ public class Member {
     @Column(nullable = false)
     private String loginId;
 
-    // 패쓰워드
+    // 패스워드
     @Column(nullable = false)
     private String password;
 
+    // 생성일
     @Column(nullable = false)
-    private LocalDateTime createdDate; // 생성일
+    private LocalDateTime createdDate;
 
+    // 수정일
     @Column(nullable = false)
-    private LocalDateTime modifiedDate; // 수정일
+    private LocalDateTime modifiedDate;
+
+    // 댓글
+    @OneToMany
+    private List<Comment> commentList;
 
     // 게시물
-//    @OneToMany
-//    private List<Post> posts = new ArrayList<>();
+    @OneToMany
+    private List<Post> posts = new ArrayList<>();
 
     public void updateMember(String email , String password, String memberName , LocalDateTime modifiedDate) {
         this.email = email;

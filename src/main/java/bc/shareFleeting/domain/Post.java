@@ -36,8 +36,8 @@ public class Post {
     @Column(nullable = false)
     private int viewCount; // 조회수
 
-//    @ManyToOne
-//    private Member member;
+    @ManyToOne
+    private Member member;
 
     public void updatePost(String title, String content, LocalDateTime modifiedDate , OpenStatus status) {
         this.title = title;

@@ -2,6 +2,7 @@ package bc.shareFleeting.service;
 
 import bc.shareFleeting.domain.Post;
 import bc.shareFleeting.web.dto.PostNewForm;
+import bc.shareFleeting.web.dto.PostUpdateForm;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface PostService {
     // 게시글 생성
     public Post createPost(PostNewForm form);
     // 게시글 수정
-    public Post updatePost(Long id, PostNewForm form);
+    public Post updatePost(Long id, PostUpdateForm form);
     // 게시글 삭제
     public void deletePost(Long id);
 }
