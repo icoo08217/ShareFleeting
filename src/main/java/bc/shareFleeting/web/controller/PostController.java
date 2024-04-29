@@ -4,7 +4,6 @@ import bc.shareFleeting.domain.Post;
 import bc.shareFleeting.service.PostService;
 import bc.shareFleeting.web.dto.PostNewForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +31,7 @@ public class PostController {
      */
     @PostMapping("/post/new")
     public Post newPost(PostNewForm form) {
-        return postService.savePost(form);
+        return postService.createPost(form);
     }
 
     /*

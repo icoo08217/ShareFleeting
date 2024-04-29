@@ -14,7 +14,7 @@ public interface PostService {
     // 게시글 전체 조회
     public List<Post> findAll();
     // 게시글 생성
-    public Post savePost(PostNewForm form);
+    public Post createPost(PostNewForm form);
     // 게시글 수정
     public Post updatePost(Long id, PostNewForm form);
     // 게시글 삭제

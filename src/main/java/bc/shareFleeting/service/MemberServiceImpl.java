@@ -2,8 +2,11 @@ package bc.shareFleeting.service;
 
 import bc.shareFleeting.domain.Member;
 import bc.shareFleeting.repository.MemberRepository;
+import bc.shareFleeting.web.dto.MemberNewForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,9 +15,18 @@ public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
     @Override
-    public Member createMember(Member member) {
-        Member savedMember = memberRepository.save(member);
-        return savedMember;
+    public Member createMember(MemberNewForm form) {
+        Member newMember = Member.builder()
+                        .memberName(form.getMemberName())
+                        .email(form.getEmail())
+                        .loginId(form.getLoginId())
+                        .password(form.getPassword())
+                        .gender(form.getGender())
+                        .createdDate(form.getCreatedDate())
+                        .modifiedDate(form.getUpdatedDate())
+                        .build();
+
+        return memberRepository.save(newMember);
     }
 
     @Override
@@ -22,6 +34,11 @@ public class MemberServiceImpl implements MemberService{
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
         return member;
+    }
+
+    @Override
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 
     @Override

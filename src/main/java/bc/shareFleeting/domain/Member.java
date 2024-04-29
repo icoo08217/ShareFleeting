@@ -2,12 +2,15 @@ package bc.shareFleeting.domain;
 
 import bc.shareFleeting.domain.role.Gender;
 import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
+@Builder @Getter
 @Table(name = "member")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 
     // id
@@ -34,8 +37,21 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private LocalDateTime createdDate; // 생성일
+
+    @Column(nullable = false)
+    private LocalDateTime modifiedDate; // 수정일
+
     // 게시물
-    @OneToMany
-    private List<Post> posts = new ArrayList<>();
+//    @OneToMany
+//    private List<Post> posts = new ArrayList<>();
+
+    public void updateMember(String email , String password, String memberName , LocalDateTime modifiedDate) {
+        this.email = email;
+        this.password = password;
+        this.memberName = memberName;
+        this.modifiedDate = modifiedDate;
+    }
 
 }

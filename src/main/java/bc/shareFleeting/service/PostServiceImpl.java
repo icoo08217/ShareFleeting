@@ -29,7 +29,7 @@ public class PostServiceImpl implements PostService{
 
     @Transactional
     @Override
-    public Post savePost(PostNewForm form) {
+    public Post createPost(PostNewForm form) {
         Post newPost = Post.builder()
                 .title(form.getTitle())
                 .content(form.getContent())
