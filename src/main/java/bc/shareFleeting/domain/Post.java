@@ -8,12 +8,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Builder @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Post{
 
     @Id @GeneratedValue
     private Long id;
@@ -36,8 +37,11 @@ public class Post {
     @Column(nullable = false)
     private int viewCount; // 조회수
 
+    @OneToMany(mappedBy = "post" , cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<HashTagPostMapping> hashTagPostMappingList; // 해시태그
+
     @ManyToOne
-    private Member member;
+    private Member member; // 작성자 정보
 
     public void updatePost(String title, String content, LocalDateTime modifiedDate , OpenStatus status) {
         this.title = title;
