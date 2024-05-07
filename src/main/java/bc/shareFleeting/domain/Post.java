@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,12 @@ public class Post{
 
     @Column(nullable = false)
     private int viewCount; // 조회수
+
+    @Column(nullable = false)
+    private int likesCount; // 좋아요수
+
+//    @OneToMany(mappedBy = "post" , cascade = CascadeType.ALL , orphanRemoval = true)
+//    private List<Comment> comments = new ArrayList<>(); // 댓글
 
     @OneToMany(mappedBy = "post" , cascade = CascadeType.ALL , orphanRemoval = true)
     private List<HashTagPostMapping> hashTagPostMappingList; // 해시태그

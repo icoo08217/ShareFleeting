@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //	Security 사용 전 잠시 주석처리
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf:thymeleaf:3.1.2.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
