@@ -1,26 +1,29 @@
 package bc.shareFleeting.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Comment")
-public class Comment {
+@Table(name = "comments")
+public class Comment extends BaseEntity {
 
     @Id @GeneratedValue
+    @Column(name = "comment_id")
     private Long id;
 
     // 댓글 내용
-    private String reContent;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
 
     // 작성자
     @ManyToOne
+    @JoinColumn(name = "")
     private Member writer;
-
-    // 생성일
-    private LocalDateTime creatDate;
-
-    // 수정일
-    private LocalDateTime modifiedDate;
 }

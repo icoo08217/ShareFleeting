@@ -16,13 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BaseEntity {
 
-    @Id @GeneratedValue
-    @Column
-    private Long id;
-
+    @Column(name = "created_date")
     @CreatedDate
     private LocalDateTime createdDate;
 
+    @Column(name = "updated_date")
     @LastModifiedDate
     private LocalDateTime updatedDate;
 }
