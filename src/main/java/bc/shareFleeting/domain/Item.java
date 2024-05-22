@@ -6,9 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity(name = "Item")
-public class Item {
+public class Item extends BaseEntity {
 
     @Id @GeneratedValue
+    @Column(name = "item_id")
     private Long id;
 
     @Column(nullable = false)

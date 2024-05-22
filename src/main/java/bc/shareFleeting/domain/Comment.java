@@ -24,6 +24,11 @@ public class Comment extends BaseEntity {
 
     // 작성자
     @ManyToOne
-    @JoinColumn(name = "")
+    @JoinColumn(name = "member_id")
     private Member writer;
+
+    // 게시물
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 }

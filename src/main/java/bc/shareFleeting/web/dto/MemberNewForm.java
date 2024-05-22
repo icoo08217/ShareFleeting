@@ -1,5 +1,6 @@
 package bc.shareFleeting.web.dto;
 
+import bc.shareFleeting.domain.BaseEntity;
 import bc.shareFleeting.domain.role.Gender;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Getter @Setter
-public class MemberNewForm {
+public class MemberNewForm extends BaseEntity {
 
     private String memberName;
 
@@ -20,20 +21,14 @@ public class MemberNewForm {
 
     private Gender gender;
 
-    // 생성일자
-    private LocalDateTime createdDate;
-
-    // 변경일자(생성일자와 동일)
-    private LocalDateTime updatedDate;
-
     @Builder
-    public MemberNewForm(LocalDateTime createdDate, String email, Gender gender, String loginId, String memberName, String password, LocalDateTime updatedDate) {
-        this.createdDate = createdDate;
-        this.email = email;
-        this.gender = gender;
-        this.loginId = loginId;
+    public MemberNewForm(String memberName, String email, String loginId, String password, Gender gender, LocalDateTime createdDate,  LocalDateTime updatedDate) {
         this.memberName = memberName;
+        this.email = email;
+        this.loginId = loginId;
         this.password = password;
+        this.gender = gender;
+        this.createdDate = createdDate;
         this.updatedDate = updatedDate;
     }
 }

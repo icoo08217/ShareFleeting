@@ -13,10 +13,10 @@ import java.util.List;
 @Table(name = "member")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
 
-    // id
     @Id @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
     // 이름
@@ -39,14 +39,6 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    // 생성일
-    @Column(nullable = false)
-    private LocalDateTime createdDate;
-
-    // 수정일
-    @Column(nullable = false)
-    private LocalDateTime modifiedDate;
-
     // 댓글
     @OneToMany
     private List<Comment> commentList;
@@ -55,11 +47,11 @@ public class Member {
     @OneToMany
     private List<Post> posts = new ArrayList<>();
 
-    public void updateMember(String email , String password, String memberName , LocalDateTime modifiedDate) {
+    public void updateMember(String email , String password, String memberName , LocalDateTime updatedDate) {
         this.email = email;
         this.password = password;
         this.memberName = memberName;
-        this.modifiedDate = modifiedDate;
+        this.updatedDate = updatedDate;
     }
 
 }

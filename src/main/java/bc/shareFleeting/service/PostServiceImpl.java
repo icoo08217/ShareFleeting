@@ -33,8 +33,6 @@ public class PostServiceImpl implements PostService{
         Post target = Post.builder()
                 .title(form.getTitle())
                 .content(form.getContent())
-                .createdDate(form.getCreatedDate())
-                .modifiedDate(form.getUpdatedDate())
                 .status(form.getStatus())
                 .build();
         return postRepository.save(target);

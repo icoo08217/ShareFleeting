@@ -15,9 +15,10 @@ import java.util.List;
 @Builder @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Post{
+public class Post extends BaseEntity{
 
     @Id @GeneratedValue
+    @Column(name = "post_id")
     private Long id;
 
     @Column(length = 100 , nullable = false)
@@ -27,33 +28,28 @@ public class Post{
     private String content; // 내용
 
     @Column(nullable = false)
-    private LocalDateTime createdDate; // 생성일
-
-    @Column(nullable = false)
-    private LocalDateTime modifiedDate; // 수정일
-
-    @Column(nullable = false)
     private OpenStatus status; // 비밀글
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private int viewCount; // 조회수
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private int likesCount; // 좋아요수
 
+    @OneToMany(mappedBy = "post" , cascade = CascadeType.REMOVE , orphanRemoval = true)
+    @OrderBy("id asc")
+    private List<Comment> comments; // 댓글
+
 //    @OneToMany(mappedBy = "post" , cascade = CascadeType.ALL , orphanRemoval = true)
-//    private List<Comment> comments = new ArrayList<>(); // 댓글
+//    private List<HashTagPostMapping> hashTagPostMappingList; // 해시태그
 
-    @OneToMany(mappedBy = "post" , cascade = CascadeType.ALL , orphanRemoval = true)
-    private List<HashTagPostMapping> hashTagPostMappingList; // 해시태그
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member; // 작성자 정보
 
-    public void updatePost(String title, String content, LocalDateTime modifiedDate , OpenStatus status) {
+    public void updatePost(String title, String content, LocalDateTime updatedDate , OpenStatus status) {
         this.title = title;
         this.content = content;
-        this.modifiedDate = modifiedDate;
+        this.updatedDate = updatedDate;
         this.status = status;
     }
 }

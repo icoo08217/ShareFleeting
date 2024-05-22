@@ -6,6 +6,7 @@ import bc.shareFleeting.web.dto.MemberNewForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,18 +23,18 @@ public class MemberServiceImpl implements MemberService{
                         .loginId(form.getLoginId())
                         .password(form.getPassword())
                         .gender(form.getGender())
-                        .createdDate(form.getCreatedDate())
-                        .modifiedDate(form.getUpdatedDate())
                         .build();
+
+        newMember.createdDate = LocalDateTime.now();
+        newMember.updatedDate = LocalDateTime.now();
 
         return memberRepository.save(newMember);
     }
 
     @Override
     public Member findMemberById(long id) {
-        Member member = memberRepository.findById(id)
+        return memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
-        return member;
     }
 
     @Override
@@ -43,7 +44,10 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member updateMember(Member member) {
-        return null;
+        Member findMember = memberRepository.findById(member.getId())
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+        findMember.updateMember(member.getEmail(), member.getPassword(), member.getMemberName(), LocalDateTime.now());
+        return findMember;
     }
 
     @Override
